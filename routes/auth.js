@@ -94,4 +94,23 @@ router.get("/users", async (req, res) => {
   }
 });
 
+// ✅ GET USER BY ID (without password)
+router.get("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Basic ObjectId validation (24 hex chars)
+    if (!id || !/^[0-9a-fA-F]{24}$/.test(id)) {
+      return res.status(400).json({ msg: "Invalid user id" });
+    }
+
+    const user = await User.findById(id).select("-password");
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    return res.json({ user });
+  } catch (err) {
+    return res.status(500).json({ msg: "Server error", err });
+  }
+});
+
 export default router;
