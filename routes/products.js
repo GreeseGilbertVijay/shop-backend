@@ -7,11 +7,11 @@ const router = express.Router();
 router.get("/seed", async (req, res) => {
   await Product.deleteMany();
   await Product.insertMany([
-    { name: "Red Shoes", price: 1200, image: "/red-shoes.jpg", description: "Comfortable stylish shoes." },
-    { name: "Blue Shirt", price: 950, image: "/blue-shirt.jpg", description: "Premium cotton shirt." },
-    { name: "Smart Watch", price: 2500, image: "/watch.jpg", description: "Track fitness and notifications." },
-    { name: "Laptop Bag", price: 1800, image: "/bag.jpg", description: "Durable waterproof bag." },
-    { name: "Sunglasses", price: 600, image: "/sunglasses.jpg", description: "UV protected modern style shades." }
+    { name: "Red Shoes", price: 1200, image: "https://photos.google.com/photo/AF1QipOvhXfD6Wp3xY3nNG2QdeMgTepXskXv8FvcBe0K", description: "Comfortable stylish shoes." },
+    { name: "Blue Shirt", price: 950, image: "https://photos.google.com/photo/AF1QipOvhXfD6Wp3xY3nNG2QdeMgTepXskXv8FvcBe0K", description: "Premium cotton shirt." },
+    { name: "Smart Watch", price: 2500, image: "https://photos.google.com/photo/AF1QipOvhXfD6Wp3xY3nNG2QdeMgTepXskXv8FvcBe0K", description: "Track fitness and notifications." },
+    { name: "Laptop Bag", price: 1800, image: "https://photos.google.com/photo/AF1QipOvhXfD6Wp3xY3nNG2QdeMgTepXskXv8FvcBe0K", description: "Durable waterproof bag." },
+    { name: "Sunglasses", price: 600, image: "https://photos.google.com/photo/AF1QipOvhXfD6Wp3xY3nNG2QdeMgTepXskXv8FvcBe0K", description: "UV protected modern style shades." }
   ]);
   res.send("✅ Seeded 5 products");
 });
