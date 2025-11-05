@@ -84,4 +84,14 @@ router.post("/logout", (req, res) => {
   }
 });
 
+// ✅ GET ALL USERS (without passwords)
+router.get("/users", async (req, res) => {
+  try {
+    const users = await User.find({}).select("-password");
+    return res.json({ users });
+  } catch (err) {
+    return res.status(500).json({ msg: "Server error", err });
+  }
+});
+
 export default router;
