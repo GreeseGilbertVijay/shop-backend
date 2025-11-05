@@ -7,7 +7,7 @@ const router = express.Router();
 // ✅ USER REGISTER API
 router.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
 
     // Check if exists
     const exists = await User.findOne({ email });
@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
     // Hash password
     const hashed = await bcrypt.hash(password, 10);
     // Save user
-    const user = new User({ email, password: hashed });
+    const user = new User({ username, email, password: hashed });
     await user.save();
     res.json({ msg: "User registered successfully" });
   } catch (err) {
