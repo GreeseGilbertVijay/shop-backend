@@ -23,14 +23,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Create product
-router.post("/", authMiddleware, async (req, res) => {
+// Create product (public)
+router.post("/", async (req, res) => {
   try {
-    const { name, price, imageLink, description, breed, color } = req.body;
+    const { name, price, imageLink, description, breed, color, count } = req.body;
     if (!name || price === undefined) {
       return res.status(400).json({ message: "'name' and 'price' are required" });
     }
-    const product = await Product.create({ name, price, imageLink, description, breed, color });
+    const product = await Product.create({ name, price, imageLink, description, breed, color, count });
     res.status(201).json(product);
   } catch (err) {
     res.status(400).json({ message: "Failed to create product" });
@@ -40,10 +40,10 @@ router.post("/", authMiddleware, async (req, res) => {
 // Update product (full update)
 router.put("/:id", authMiddleware, async (req, res) => {
   try {
-    const { name, price, imageLink, description, breed, color } = req.body;
+    const { name, price, imageLink, description, breed, color, count } = req.body;
     const updated = await Product.findByIdAndUpdate(
       req.params.id,
-      { name, price, imageLink, description, breed, color },
+      { name, price, imageLink, description, breed, color, count },
       { new: true, runValidators: true }
     );
     if (!updated) return res.status(404).json({ message: "Product not found" });
