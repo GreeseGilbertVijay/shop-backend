@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
   description: String,
   rating:String,
   breed:String,
-  color:String
+  color:String,
+  count:String,
 });
 
 export default mongoose.model("Product", productSchema);
