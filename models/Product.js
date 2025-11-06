@@ -3,8 +3,11 @@ import mongoose from "mongoose";
 const productSchema = new mongoose.Schema({
   name: String,
   price: Number,
-  image: String,
-  description: String
+  imageLink: String,
+  description: String,
+  rating:String,
+  breed:String,
+  color:String
 });
 
 export default mongoose.model("Product", productSchema);
